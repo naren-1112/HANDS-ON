@@ -10,9 +10,9 @@ namespace P1
     {
         static void Main(string[] args)
         {
-            Add ex = new Add();
+            Add nos = new Add();
 
-            ex.sum(50, 20);
+            nos.sum(50, 20);
         }
     }
     class Add
