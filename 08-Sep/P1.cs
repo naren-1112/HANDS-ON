@@ -1,7 +1,12 @@
-using Microsoft.VisualBasic.FileIO;
-using P1c;
-using System.Transactions;
+//Program.cs
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using P1c;
 namespace P1
 {
     internal class Program
@@ -9,36 +14,36 @@ namespace P1
         static void Main(string[] args)
         {
             List<Employee> m = new List<Employee>();
-            earn:
+        earn:
             Console.WriteLine(" 1.Add\n 2.Delete\n 3.Edit");
             int y = Convert.ToInt32(Console.ReadLine());
 
             Dept CS = new Dept();
-            
+
 
 
 
             switch (y)
             {
                 case 1:
-                
+
                     Console.WriteLine("Enter deptno");
                     CS.DeptNo = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("DeptName");
                     CS.DeptName = Console.ReadLine();
                     Console.WriteLine("Location of department");
                     CS.Location = Console.ReadLine();
-                    start:
+                start:
                     numb s1 = new numb(CS.Adding);
-                    CS=s1(CS);
-                    foreach(Employee e in CS.prod)
+                    CS = s1(CS);
+                    foreach (Employee e in CS.prod)
                     {
                         if (!m.Contains(e))
                             m.Add(e);
 
                     }
                     Console.WriteLine("Enter Yes to add further");
-                    string mk=Console.ReadLine();
+                    string mk = Console.ReadLine();
                     if (mk == "Yes")
                     {
                         goto start;
@@ -47,15 +52,15 @@ namespace P1
                 case 2:
                     Employee mp = new Employee();
                     Console.WriteLine("Enter employee id to delete");
-                    int mkt=Convert.ToInt32(Console.ReadLine());
-                    m =mp.Delete(mkt,m);
+                    int mkt = Convert.ToInt32(Console.ReadLine());
+                    m = mp.Delete(mkt, m);
                     mp.Display(m);
                     break;
                 case 3:
                     Console.WriteLine("Enter employee id to edit");
-                    int ktm=Convert.ToInt32(Console.ReadLine());
+                    int ktm = Convert.ToInt32(Console.ReadLine());
                     Employee mpt = new Employee();
-                    m= mpt.Edit(ktm,m);
+                    m = mpt.Edit(ktm, m);
                     mpt.Display(m);
 
                     break;
@@ -68,15 +73,16 @@ namespace P1
             numb1 ns1 = new numb1(mt.Displaybymgr);
             ns1(m);
             Console.WriteLine("Enter Yes to restart");
-            string pass=Console.ReadLine();
+            string pass = Console.ReadLine();
             if (pass == "Yes")
             {
                 goto earn;
             }
             Console.ReadLine();
-        }
-    }
+        }
+    }
 }
+
 
 //Class.cs
 
