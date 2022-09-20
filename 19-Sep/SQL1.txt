@@ -1,0 +1,50 @@
+create database Shopping
+go
+use Shopping
+create table customer
+(
+custid int NOT NULL,
+custname varchar(20)NOT NULL ,
+city varchar(20)NOT NULL,
+state varchar(20)NOT NULL
+)
+create table products
+(
+prodid int NOT NULL,
+prodname varchar(20)NOT NULL,
+unitprice int NOT NULL,
+UnitOfMeasurement varchar(20)NOT NULL,
+QtyinStock int NOT NULL
+)
+
+create table sales_header
+(
+invno int NOT NULL,
+invdate date NOT NULL,
+invamt float NOT NULL,
+disPercent float NOT NULL
+)
+
+create table sales_detail
+(
+invno int NOT NULL,
+custid int NOT NULL,
+prodid int NOT NULL,
+qtysold int NOT NULL
+)
+alter table sales_detail
+add primary key(custid,prodid,invno);
+create table sales
+(invno int primary key)
+alter table sales_detail
+add foreign key(invno) references sales(invno)
+alter table sales_detail
+add foreign key(custid) references sales(invno)
+alter table sales_detail
+add foreign key(prodid) references sales(invno)
+alter table sales_detail
+drop column qtysold;
+alter table sales_detail
+add Qty int NOT NULL;
+EXEC sp_rename
+'sales_detail.Qty','Quantity','column';
